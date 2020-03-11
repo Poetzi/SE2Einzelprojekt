@@ -55,4 +55,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSendToServer" />
 
+    <Button
+        android:id="@+id/buttonBerechnen"
+        android:layout_width="115sp"
+        android:layout_height="47sp"
+        android:onClick="berechnenVonMatrikelnummer"
+        android:text="Berechnen"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonSendToServer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSendToServer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
