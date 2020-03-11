@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -14,11 +17,35 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText editTextMatrikelnummer;
+    Button buttonSendToServer;
+    TextView textViewAntwortVonServer;
+    String matrikelnummer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editTextMatrikelnummer = findViewById(R.id.editTextMatrikelnummer);
+        buttonSendToServer = findViewById(R.id.buttonSendToServer);
+        textViewAntwortVonServer = findViewById(R.id.textViewAntwortVonServer);
     }
+
+    public void sendenAnServer(){
+        matrikelnummer = editTextMatrikelnummer.getText().toString();
+        Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     class Netzwerkübertragung extends AsyncTask {
         private String serverDomain;
