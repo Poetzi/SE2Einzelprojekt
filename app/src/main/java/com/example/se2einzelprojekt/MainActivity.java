@@ -15,8 +15,6 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < intArray.length; i++) {
             matrikelnummer = matrikelnummer + intArray[i];
         }
-        editTextMatrikelnummer.setText(matrikelnummer);
+        textViewAntwortVonServer.setText(matrikelnummer);
     }
 
 
@@ -96,6 +94,10 @@ class Netzwerkübertragung extends AsyncTask {
     }
 
     @Override
+    /**
+     * Methode wurde in Anlehnung an das Tutorium erstellt. Öffnet und schließt
+     * die Netzwerkverbindung.
+     */
     protected Object doInBackground(Object[] objects) {
         try {
             Socket socket = new Socket(serverDomain, portNummer);
