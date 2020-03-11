@@ -22,7 +22,7 @@
         android:id="@+id/editTextMatrikelnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
         android:textSize="27sp"
@@ -30,5 +30,28 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMatrikelnummer" />
+
+    <Button
+        android:id="@+id/buttonSendToServer"
+        android:layout_width="115dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="40dp"
+        android:text="Senden"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMatrikelnummer" />
+
+    <TextView
+        android:id="@+id/textViewAntwortVonServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Serverantwort"
+        android:textSize="27sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSendToServer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
