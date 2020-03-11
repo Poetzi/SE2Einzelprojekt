@@ -1,7 +1,5 @@
 package com.example.se2einzelprojekt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
         textViewAntwortVonServer = findViewById(R.id.textViewAntwortVonServer);
     }
 
-    public void sendenAnServer(View view){
+    public void sendenAnServer(View view) throws ExecutionException, InterruptedException {
         matrikelnummer = editTextMatrikelnummer.getText().toString();
-        Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);
+        Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);//se2-isys.aau.at
         netzwerkübertragung.execute();
-        textViewAntwortVonServer.setText(netzwerkübertragung.antwortVonServer);
+        netzwerkübertragung.get();
+        textViewAntwortVonServer.setText(netzwerkübertragung.getAntwortVonServer());
+
     }
 
     class Netzwerkübertragung extends AsyncTask {
@@ -56,19 +58,19 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Socket socket = new Socket(serverDomain, portNummer);
                 DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-                BufferedReader inputStreamFromServer = new BufferedReader((new InputStreamReader(socket.getInputStream())));
-                outputStream.writeBytes(matrikelnummer + '\n');
+                BufferedReader inputStreamFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                outputStream.writeBytes(matrikelnummer + "\n");
                 antwortVonServer = inputStreamFromServer.readLine();
                 socket.close();
+                Log.e("Funktioniert", "Hurra!");
             } catch (Exception e) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Ein fehler bei der Serververbindung ist aufgetreten!\n" +
-                        e.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
                 Log.e("Fehler", "Serververbindungsfehler");
-
-
             }
 
+            return null;
+        }
+
+        public String getAntwortVonServer() {
             return antwortVonServer;
         }
     }
