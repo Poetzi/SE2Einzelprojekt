@@ -36,6 +36,7 @@
         android:layout_width="115dp"
         android:layout_height="47dp"
         android:layout_marginTop="40dp"
+        android:onClick="sendenAnServer"
         android:text="Senden"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.148"

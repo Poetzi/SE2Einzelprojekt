@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,21 +32,12 @@ public class MainActivity extends AppCompatActivity {
         textViewAntwortVonServer = findViewById(R.id.textViewAntwortVonServer);
     }
 
-    public void sendenAnServer(){
+    public void sendenAnServer(View view){
         matrikelnummer = editTextMatrikelnummer.getText().toString();
         Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);
+        netzwerkübertragung.execute();
+        textViewAntwortVonServer.setText(netzwerkübertragung.antwortVonServer);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     class Netzwerkübertragung extends AsyncTask {
         private String serverDomain;
