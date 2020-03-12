@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendenAnServer(View view) throws ExecutionException, InterruptedException {
         matrikelnummer = editTextMatrikelnummer.getText().toString();
-        Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);//se2-isys.aau.at
+        Netzwerkübertragung netzwerkübertragung = new Netzwerkübertragung("se2-isys.aau.at", 53212, matrikelnummer);
         netzwerkübertragung.execute();
         netzwerkübertragung.get();
         textViewAntwortVonServer.setText(netzwerkübertragung.getAntwortVonServer());
@@ -106,9 +106,9 @@ class Netzwerkübertragung extends AsyncTask {
             outputStream.writeBytes(matrikelnummer + "\n");
             antwortVonServer = inputStreamFromServer.readLine();
             socket.close();
-            Log.e("Funktioniert", "Hurra!");
+            Log.e("Verbindung erfolgreich", "Die Verbindung zum Server konnte hergestellt werden.");
         } catch (Exception e) {
-            Log.e("Fehler", "Serververbindungsfehler");
+            Log.e("Fehler", "Serververbindungsfehler!");
         }
 
         return null;
